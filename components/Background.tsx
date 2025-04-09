@@ -7,7 +7,7 @@ export default function Background() {
 
   return (
     <div
-      className="absolute inset-0 z-0 grid"
+      className="absolute inset-0 grid pointer-events-none"
       style={{
         gridTemplateColumns: `repeat(auto-fill, ${size}px)`,
         gridTemplateRows: `repeat(auto-fill, ${size}px)`,
@@ -23,11 +23,22 @@ export default function Background() {
             className="flex items-center justify-center"
             style={{
               fontSize: `${size * 0.8}px`,
-              cursor: 'default',
-              pointerEvents: 'none',
+              cursor: isSpecial ? 'pointer' : 'default',
+              pointerEvents: isSpecial ? 'auto' : 'none',
             }}
           >
-            {isSpecial ? "💛" : i % 2 === 0 ? "🍣" : "🦄"}
+            {isSpecial ? (
+              <a
+                href="https://jarrensj.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
+                💛
+              </a>
+            ) : (
+              i % 2 === 0 ? "🍣" : "🦄"
+            )}
           </div>
         );
       })}
